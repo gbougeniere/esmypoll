@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<html ng-app="pollApp">
+
+<head>
+  <title>Event Sourcing my Poll</title>
+</head>
+
+<body>
+
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="custom.css" />
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
+  
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script type="text/javascript" src="node_modules/eventric/dist/release/eventric.js"></script>
+  <script type="text/javascript" src="node_modules/eventric-remote-socketio-client/dist/release/eventric_remote_socketio_client.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="controllers/admin.js"></script>
+  <script type="text/javascript" src="controllers/vote.js"></script>
+
+  <script type="text/javascript" src="node_modules/chart.js/dist/Chart.min.js"></script>
+  <script type="text/javascript" src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+
+  <div class="container">
+    <h1>Event Sourcing my Poll</h1>
+
+  <div ng-view></div>
+    
+</div>
+</body>
+</html>

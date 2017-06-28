@@ -1,0 +1,19 @@
+{
+  "name": "eventricapp",
+  "version": "1.0.0",
+  "description": "Test Eventric en vue d'une demo Event Sourcing",
+  "main": "myApp.js",
+  "dependencies": {
+    "angular-chart.js": "^1.1.1",
+    "eventric": "^0.26.0",
+    "eventric-remote-socketio-client": "^0.5.1",
+    "eventric-remote-socketio-endpoint": "^1.0.0",
+    "socket.io": "^1.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gilles Bougenière",
+  "license": "ISC"
+}

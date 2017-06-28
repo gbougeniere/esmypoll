@@ -1,0 +1,93 @@
+<div class="row" ng-controller="PollController as vm">
+      <div class="col-lg-4">
+        <div class="well">
+          <form class="form-horizontal">
+            <fieldset>
+              <legend><i class="fa fa-user"></i> Profil utilisateur</legend>
+              <div class="form-group">
+                <label for="inputLastName" class="col-lg-2 control-label">Nom</label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" id="inputLastName" placeholder="Nom" ng-model="vm.identity.lastName">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputFirstName" class="col-lg-2 control-label">Prénom</label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" id="inputFirstName" placeholder="Prénom" ng-model="vm.identity.firstName">
+                </div>
+              </div>
+              <div class="form-group">
+                  <label for="genre" class="col-lg-2 control-label">Genre</label>                
+                  <div class="col-lg-10">
+                      <label class="radio-inline">
+                        <input type="radio" ng-model="vm.identity.sexe" value="M"/>Masculin
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" ng-model="vm.identity.sexe" value="F"/>Féminin
+                      </label>
+                  </div>
+                  <!--<div class="col-lg-10">
+                      <input type="text" class="form-control" id="inputGender" placeholder="Prénom" ng-model="vm.identity.sexe">
+                  </div>-->
+              </div>
+              <div class="form-group">
+                  <label for="inputFirstName" class="col-lg-2 control-label">Age</label>
+                  <div class="col-lg-10">
+                      <input type="number" min="10" max="120" class="form-control" id="inputAge" placeholder="Age" ng-model="vm.identity.age">
+                  </div>
+              </div>
+            </fieldset>
+            <!--<pre>{{vm.pollProjection | json}}</pre>-->
+            <!--<pre>{{vm | json}}</pre>-->
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <fieldset ng-if="!vm.resultMode && !vm.pollProjection.pollClosed">
+          <legend>
+            <h2><i class="fa fa-file-movie-o"></i> {{vm.pollProjection.pollName}}</h2>
+          </legend>
+          <div class="list-group">
+            <a class="list-group-item" style="height: 100px;" ng-class="{active: vm.selectedChoice == key}" ng-repeat="(key, choice) in vm.pollProjection.pollList" ng-click="vm.selectChoice(key)">
+            <div style="position: absolute; margin-top: -16px; margin-left: -16px;">
+              <img src="{{choice.img}}" alt="">
+            </div>
+            <div style="margin-left: 70px">
+              <h5 class="list-group-item-heading">{{$index + 1}}. {{choice.title}}</h5>
+              <p class="list-group-item-text ">{{choice.description}}</p>
+            </div>
+          </a>
+        </div>
+        <!--<pre>{{vm | json}}</pre>-->
+        <button ng-disabled="vm.selectedChoice == undefined || vm.selectedChoice == null || vm.selectedChoice == ''" class="btn btn-warning btn-lg btn-block" ng-click="vm.vote()">Valider mon vote</button>
+      </fieldset>
+      <fieldset ng-if="vm.resultMode || vm.pollProjection.pollClosed">
+        <legend>
+          <h2>Résultats du sondage</h2>
+        </legend>
+        <div class="list-group">
+          <div class="list-group-item" style="height: 100px;" ng-repeat="(choiceId, result) in vm.resultProjection.totalVotes">
+            <div style="position: absolute; margin-top: -16px; margin-left: -16px;">
+              <img src="{{vm.pollProjection.pollList[choiceId].img}}" alt="">
+            </div>
+            <div style="margin-left: 70px">
+              <h5 class="list-group-item-heading">{{$index + 1}}. {{vm.pollProjection.pollList[choiceId].title}}</h5>
+              <div class="list-group-item-text">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{vm.Math.round(result/vm.resultProjection.totalVoteCount*100)}}" aria-valuemin="0" aria-valuemax="100" style="width: {{vm.Math.round(result/vm.resultProjection.totalVoteCount*100)}}%; heigth: 20px;">
+                    {{vm.Math.round(result/vm.resultProjection.totalVoteCount*100)}} %
+                  </div>
+              </div>
+              <div class="pull-right">Votes <span class="badge">{{result}}</span></div> 
+              </div>
+            </div>
+            
+            
+          </div>
+        </div>
+        <div class="pull-right">Nombre de votes : <span class="badge">{{vm.resultProjection.totalVoteCount}}</span></div>
+      </fieldset>
+    </div>
+
+  </div>

@@ -1,0 +1,71 @@
+<div ng-controller="AdminController as vm">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5>
+                        Nombre total de votes : <em>{{vm.statProjection.totalVoteCount}}</em>
+                    </h5>
+                </div>
+                <!--<div class="panel-body">-->
+                    <button ng-disabled="false" class="btn btn-warning btn-lg btn-block" ng-click="vm.closePoll()">Clôturer les votes</button>
+                <!--</div>-->
+                
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">            
+                <div class="well">
+                    <legend>Répartition des votes par genre des votants</legend>
+                    <canvas id="doughnut" class="chart chart-doughnut" chart-data="vm.statProjection.voteBySexe.total" chart-labels="vm.statProjection.voteBySexe.label">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="well">
+                    <legend>Répartition des votes par tranche d'âge des votants</legend>
+                    <canvas id="bar" class="chart chart-bar" chart-data="vm.statProjection.voteByAge.total" chart-labels="vm.statProjection.voteByAge.label" chart-series="vm.statProjection.voteByAge.series">
+                    </canvas>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="well">
+                    <legend>Répartition des vote par heure de la journée</legend>
+                    <canvas id="line" class="chart chart-line" chart-data="vm.statProjection.voteByHour.total" chart-labels="vm.statProjection.voteByHour.label" chart-series="vm.statProjection.voteByHour.series">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5>Détail des votes</h5>
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Sexe</th>
+                        <th>Age</th>
+                        <th>Choix</th>
+                    </tr>
+                    <tr ng-repeat="vote in vm.statProjection.votes">
+                        <td>{{vote.firstName}}</td>
+                        <td>{{vote.lastName}}</td>
+                        <td>{{vote.sexe}}</td>
+                        <td>{{vote.age}}</td>
+                        <td>{{vm.statProjection.pollChoices[vote.choice].title}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
